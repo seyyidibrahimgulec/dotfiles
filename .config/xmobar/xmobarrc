@@ -1,0 +1,48 @@
+Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
+       , additionalFonts = []
+       , borderColor = "black"
+       , border = TopB
+       , bgColor = "#282a36"
+       , fgColor = "#eff0eb"
+       , alpha = 255
+       , position = TopSize L 100 24
+       , textOffset = -1
+       , iconOffset = -1
+       , lowerOnStart = True
+       , pickBroadest = False
+       , persistent = False
+       , hideOnStart = False
+       , iconRoot     = "/home/ibrahim/.xmonad/xpm/"  -- default: "."
+       , allDesktops = True
+       , overrideRedirect = True
+       , commands = [ Run Battery ["-t","<acstatus> <left>%",
+                                   "-L","20",
+                                   "-H","50",
+                                   "--normal","yellow",
+                                   "--high","green",
+                                   "--low","red"] 600
+                    , Run CoreTemp ["-t","<core0>°C",
+                                    "-H","60",
+                                    "-L","40",
+                                    "--normal","green",
+                                    "--high","red",
+                                    "--low","lightgreen"] 50
+                    , Run Weather "LTBR" ["-t","<station>: <tempC>°C",
+                                         "-L","18","-H","25",
+                                         "--normal","green",
+                                         "--high","red",
+                                         "--low","lightblue"] 36000
+                    , Run Network "lo" ["-L","0","-H","32",
+                                        "--normal","green","--high","red"] 10
+                    , Run Network "wlp2s0" ["-L","0","-H","32",
+                                            "--normal","green","--high","red"] 10
+                    , Run Cpu ["-L","3","-H","50",
+                               "--normal","green","--high","red"] 10
+                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Date "%A / %_d %B %Y %H:%M:%S" "date" 10
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " <icon=haskell_20.xpm/> | <icon=cpu_20.xpm/> %cpu%/%coretemp% | <icon=memory-icon_20.xpm/> %memory% | %lo% - %wlp2s0% }\
+                    \{ <icon=calendar-clock-icon_20.xpm/> <fc=#ee9a00>%date%</fc> | %LTBR% | %battery% "
+       }
