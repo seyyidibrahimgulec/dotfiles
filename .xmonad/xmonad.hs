@@ -132,7 +132,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0 , xF86XK_AudioMute), spawn "pactl set-sink-mute 0 toggle")
 
     -- Control brightness
-    , ((0 , xF86XK_MonBrightness), spawn "sudo xbacklight -dec 10")
+    , ((0 , xF86XK_MonBrightnessDown), spawn "sudo xbacklight -dec 10")
     , ((0 , xF86XK_MonBrightnessUp), spawn "sudo xbacklight -inc 10")
 
     -- Quit xmonad
