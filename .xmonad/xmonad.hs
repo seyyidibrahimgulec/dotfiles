@@ -14,6 +14,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
+import Graphics.X11.ExtraTypes.XF86
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -124,6 +125,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- See also the statusBar function from Hooks.DynamicLog.
     --
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
+
+    -- Control sound
+    , ((0 , xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume 0 +1.5%")
+    , ((0 , xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume 0 -1.5%")
+    , ((0 , xF86XK_AudioMute), spawn "pactl set-sink-mute 0 toggle")
+
+    -- Control brightness
+    , ((0 , xF86XK_MonBrightness), spawn "sudo xbacklight -dec 10")
+    , ((0 , xF86XK_MonBrightnessUp), spawn "sudo xbacklight -inc 10")
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
