@@ -40,9 +40,10 @@ Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
                                "--normal","green","--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>%"] 10
                     , Run Date "%A / %_d %B %Y %H:%M:%S" "date" 10
+                    , Run Volume "default" "Master" [] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
        , template = " <icon=haskell_20.xpm/> | <icon=cpu_20.xpm/> %cpu%/%coretemp% | <icon=memory-icon_20.xpm/> %memory% | %lo% - %wlp2s0% }\
-                    \{ <icon=calendar-clock-icon_20.xpm/> <fc=#ee9a00>%date%</fc> | %LTBR% | %battery% "
+                    \{ <icon=calendar-clock-icon_20.xpm/> <fc=#ee9a00>%date%</fc> | %LTBR% | %battery% | %default:Master% "
        }
