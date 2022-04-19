@@ -11,6 +11,7 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
 import XMonad.Layout.Spacing
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
@@ -32,6 +33,11 @@ myFocusFollowsMouse = True
 myClickJustFocuses :: Bool
 myClickJustFocuses = False
 
+
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
+
 -- Width of the window border in pixels.
 --
 myBorderWidth   = 4
@@ -52,7 +58,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1:comm","2:emacs","3:term","4:web","5","6","7","8","9"]
+myWorkspaces    = ["1:chat","2:emacs","3:term","4:web","5:video","6:other","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -250,7 +256,21 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook = return ()
+color01 = "#ff6c6b"
+color02 = "#51afef"
+color03 = "#ecbe7b"
+
+myLogHook proc = dynamicLogWithPP $ xmobarPP
+  {  ppOutput = hPutStrLn proc
+   , ppCurrent = xmobarColor color01 "" . wrap ("<fc=" ++ color01 ++ ">") "</fc>"
+   , ppVisible = xmobarColor color01 ""
+   , ppHidden = xmobarColor color02 "" . wrap ("<fc=" ++ color02 ++ ">") "</fc>"
+   , ppHiddenNoWindows = xmobarColor color02 ""
+   , ppTitle = xmobarColor color03 "" . shorten 40
+   , ppSep =  " | "
+   , ppExtras  = [windowCount]
+   , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+   }
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -272,7 +292,7 @@ myStartupHook = do
 --
 main = do
   xmproc <- spawnPipe "xmobar"
-  xmonad $docks defaults
+  xmonad $docks $ defaults xmproc
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -280,7 +300,7 @@ main = do
 --
 -- No need to modify this.
 --
-defaults = def {
+defaults xmproc = def {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -299,7 +319,7 @@ defaults = def {
         layoutHook         = spacingRaw False (Border 0 10 10 10) True (Border 10 10 10 10) True $ myLayout,
         manageHook         = myManageHook,
         handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        logHook            = myLogHook xmproc,
         startupHook        = myStartupHook
     }
 

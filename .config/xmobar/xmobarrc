@@ -1,5 +1,8 @@
 Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
-       , additionalFonts = []
+       , additionalFonts = [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
+                           , "xft:Font Awesome 6 Free Solid:pixelsize=16"
+                           , "xft:Font Awesome 6 Brands:pixelsize=18"
+                           ]
        , borderColor = "black"
        , border = TopB
        , bgColor = "#282a36"
@@ -15,35 +18,20 @@ Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
        , iconRoot     = "/home/ibrahim/.xmonad/xpm/"  -- default: "."
        , allDesktops = True
        , overrideRedirect = True
-       , commands = [ Run Battery ["-t","<acstatus> <left>%",
-                                   "-L","20",
-                                   "-H","50",
-                                   "--normal","yellow",
-                                   "--high","green",
-                                   "--low","red"] 600
-                    , Run CoreTemp ["-t","<core0>°C",
-                                    "-H","60",
-                                    "-L","40",
-                                    "--normal","green",
-                                    "--high","red",
-                                    "--low","lightgreen"] 50
-                    , Run Weather "LTBR" ["-t","<station>: <tempC>°C",
-                                         "-L","18","-H","25",
-                                         "--normal","green",
-                                         "--high","red",
-                                         "--low","lightblue"] 36000
-                    , Run Network "lo" ["-L","0","-H","32",
-                                        "--normal","green","--high","red"] 10
-                    , Run Network "wlp2s0" ["-L","0","-H","32",
-                                            "--normal","green","--high","red"] 10
-                    , Run Cpu ["-L","3","-H","50",
-                               "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Date "%A / %_d %B %Y %H:%M:%S" "date" 10
-                    , Run Volume "default" "Master" [] 10
+       , commands = [ Run Cpu ["-t", "<fn=2>\xf108</fn> CPU:(<total>%)","-H","50","--high","red"] 20
+                    , Run Memory ["-t", "<fn=2>\xf7c2</fn> <used>M(<usedratio>%)"] 20
+                    , Run Date "<fn=2>\xf073</fn> %d %B %Y" "date" 3600
+                    , Run Date "<fn=2>\xf017</fn> %H:%M" "time" 50
+                    , Run Volume "default" "Master" ["-t", "<fn=2>\xf028</fn> <volume>% <status>"] 10
+                    , Run Com "echo" ["<fn=3>\xf17c</fn>"] "penguin" 3600
+                    , Run Com "uname" ["-r"] "kernel" 36000
+                    , Run Com "echo" ["<fn=2>\xf242</fn>"] "baticon" 3600
+                    , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
+                    , Run UnsafeStdinReader
                     ]
+
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <icon=haskell_20.xpm/> | <icon=cpu_20.xpm/> %cpu%/%coretemp% | <icon=memory-icon_20.xpm/> %memory% | %lo% - %wlp2s0% }\
-                    \{ <icon=calendar-clock-icon_20.xpm/> <fc=#ee9a00>%date%</fc> | %LTBR% | %battery% | %default:Master% "
+       , template = " <icon=haskell_20.xpm/> | %UnsafeStdinReader% }\
+                    \{ <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> | <fc=#ee9a00>%date%</fc> | <fc=#a3c562>%baticon% %battery%</fc> | <fc=#da70d6>%default:Master%</fc> | <fc=#ee9a00>%time%</fc> "
        }
