@@ -20,6 +20,7 @@ Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
        , overrideRedirect = True
        , commands = [ Run Cpu ["-t", "<fn=2>\xf108</fn> CPU:(<total>%)","-H","50","--high","red"] 20
                     , Run Memory ["-t", "<fn=2>\xf7c2</fn> <used>M(<usedratio>%)"] 20
+                    , Run Wireless "wlp2s0" [ "-t", "<fn=2>\xf1eb</fn> <essid>" ] 10
                     , Run Date "<fn=2>\xf073</fn> %d %B %Y" "date" 3600
                     , Run Date "<fn=2>\xf017</fn> %H:%M" "time" 50
                     , Run Volume "default" "Master" ["-t", "<fn=2>\xf028</fn> <volume>% <status>"] 10
@@ -33,5 +34,5 @@ Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
        , sepChar = "%"
        , alignSep = "}{"
        , template = " <icon=haskell_20.xpm/> | %UnsafeStdinReader% }\
-                    \{ <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> | <fc=#ee9a00>%date%</fc> | <fc=#a3c562>%baticon% %battery%</fc> | <fc=#da70d6>%default:Master%</fc> | <fc=#ee9a00>%time%</fc> "
+                    \{ <fc=#ee9a00>%time%</fc> | <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> | <fc=#ee9a00>%date%</fc> | <fc=#a3c562>%baticon% %battery%</fc> | <fc=#da70d6>%default:Master%</fc> | <fc=#51afef>%wlp2s0wi%</fc> "
        }

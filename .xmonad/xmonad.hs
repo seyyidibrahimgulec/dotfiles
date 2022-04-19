@@ -266,7 +266,7 @@ myLogHook proc = dynamicLogWithPP $ xmobarPP
    , ppVisible = xmobarColor color01 ""
    , ppHidden = xmobarColor color02 "" . wrap ("<fc=" ++ color02 ++ ">") "</fc>"
    , ppHiddenNoWindows = xmobarColor color02 ""
-   , ppTitle = xmobarColor color03 "" . shorten 40
+   , ppTitle = xmobarColor color03 "" . shorten 35
    , ppSep =  " | "
    , ppExtras  = [windowCount]
    , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
