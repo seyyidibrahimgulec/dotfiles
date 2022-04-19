@@ -1,4 +1,4 @@
-Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
+Config { font = "xft:Roboto Mono:pixelsize=18:antialias=true:hinting=true"
        , additionalFonts = [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
                            , "xft:Font Awesome 6 Free Solid:pixelsize=16"
                            , "xft:Font Awesome 6 Brands:pixelsize=18"
@@ -33,6 +33,6 @@ Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
 
        , sepChar = "%"
        , alignSep = "}{"
-       , template = " <icon=haskell_20.xpm/> | %UnsafeStdinReader% }\
+       , template = " <icon=haskell_30.xpm/> %UnsafeStdinReader% }\
                     \{ <fc=#ee9a00>%time%</fc> | <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> | <fc=#ee9a00>%date%</fc> | <fc=#a3c562>%baticon% %battery%</fc> | <fc=#da70d6>%default:Master%</fc> | <fc=#51afef>%wlp2s0wi%</fc> "
        }
