@@ -45,7 +45,7 @@ window:
   # When true, alacritty starts maximized.
   # startup_mode: Maximized
   #
-  opacity: 0.900
+  opacity: 0.700
 
 mouse:
   # Click settings
