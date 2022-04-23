@@ -65,6 +65,11 @@ myWorkspaces    = ["1:chat","2:emacs","3:term","4:web","5:video","6:other","7","
 myNormalBorderColor  = "#dddddd"
 myFocusedBorderColor = "#00ab84"
 
+menuBackgroundColor = "#282a36"
+menuForegroundColor = "#eff0eb"
+menuFontFamily = "Iosevka Aile"
+menuArguments = " -i -l 5 -fn '" ++ menuFontFamily ++ "' -nb '" ++ menuBackgroundColor ++ "' -nf '" ++ menuForegroundColor ++ "' -bw 4"
+
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -74,7 +79,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run -l 5 -fn 'Iosevka Aile' -nb '#282a36' -nf '#eff0eb' -bw 4")
+    , ((modm,               xK_p     ), spawn ("dmenu_run" ++ menuArguments))
+
+    -- launch clipmenu
+    , ((modm,               xK_u     ), spawn ("clipmenu" ++ menuArguments))
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
