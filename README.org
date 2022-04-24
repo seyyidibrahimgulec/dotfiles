@@ -1,4 +1,24 @@
 #+title: My personal dotfiles
+* Table Of Contents :TOC:
+- [[#alacritty][Alacritty]]
+- [[#bash][Bash]]
+- [[#gtk][Gtk]]
+- [[#starship][Starship]]
+- [[#tmux][Tmux]]
+- [[#xmobar][Xmobar]]
+- [[#xmodmap][Xmodmap]]
+- [[#xmonad][Xmonad]]
+  - [[#imports][Imports]]
+  - [[#variables][Variables]]
+  - [[#key-bindings][Key Bindings]]
+  - [[#mouse-bindings][Mouse Bindings]]
+  - [[#layout][Layout]]
+  - [[#hooks][Hooks]]
+  - [[#main][Main]]
+- [[#xprofile][Xprofile]]
+- [[#xresources][Xresources]]
+- [[#zsh][Zsh]]
+
 * Alacritty
 #+begin_src yaml :tangle .alacritty.yml
 font:
