@@ -76,8 +76,10 @@ myKeys =
     , ("M-S-q", io (exitWith ExitSuccess))
     , ("M-q", spawn "xmonad --recompile; xmonad --restart")
 
-      -- launch emacs
+      -- Emacs keybindings
     , ("M-e", spawn (myEmacs))
+    , ("M-S-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))
+    , ("M-S-e d", spawn (myEmacs ++ ("--eval '(dired nil)'")))
 
       -- launch browser
     , ("M-b", spawn (myBrowser))
