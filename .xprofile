@@ -1,4 +1,0 @@
-xset r rate 400 50
-xmodmap ~/.Xmodmap
-setxkbmap -option altwin:swap_alt_win
-

@@ -1,0 +1,982 @@
+#+title: My personal dotfiles
+* Alacritty
+#+begin_src yaml :tangle .alacritty.yml
+font:
+  # Normal (roman) font face
+  normal:
+    #family: Droid Sans Mono
+    # Font family
+    #
+    # Default:
+    #   - (macOS) Menlo
+    #   - (Linux) monospace
+    #   - (Windows) Consolas
+    family: "Roboto Mono"
+  size: 10
+
+window:
+  # Window dimensions (changes require restart)
+  #
+  # Specified in number of columns/lines, not pixels.
+  # If both are `0`, this setting is ignored.
+  dimensions:
+    columns: 0
+    lines: 0
+
+  # Window padding (changes require restart)
+  #
+  # Blank space added around the window in pixels. This padding is scaled
+  # by DPI and the specified value is always added at both opposing sides.
+  padding:
+    x: 6
+    y: 0
+
+  # Spread additional padding evenly around the terminal content.
+  dynamic_padding: false
+
+  # Window decorations
+  #
+  # Values for `decorations`:
+  #     - full: Borders and title bar
+  #     - none: Neither borders nor title bar
+  #
+  # Values for `decorations` (macOS only):
+  #     - transparent: Title bar, transparent background and title bar buttons
+  #     - buttonless: Title bar, transparent background, but no title bar buttons
+  decorations: none
+
+  # When true, alacritty starts maximized.
+  # startup_mode: Maximized
+  #
+  opacity: 0.700
+
+mouse:
+  # Click settings
+  #
+  # The `double_click` and `triple_click` settings control the time
+  # alacritty should wait for accepting multiple clicks as one double
+  # or triple click.
+  #double_click: { threshold: 300 }
+  #triple_click: { threshold: 300 }
+  # If this is `true`, the cursor is temporarily hidden when typing.
+  hide_when_typing: true
+
+# Colors (Snazzy)
+colors:
+  # Default colors
+  primary:
+    background: '#282a36'
+    foreground: '#eff0eb'
+
+  # Normal colors
+  normal:
+    black:   '#282a36'
+    red:     '#ff5c57'
+    green:   '#5af78e'
+    yellow:  '#f3f99d'
+    blue:    '#57c7ff'
+    magenta: '#ff6ac1'
+    cyan:    '#9aedfe'
+    white:   '#f1f1f0'
+
+  # Bright colors
+  bright:
+    black:   '#686868'
+    red:     '#ff5c57'
+    green:   '#5af78e'
+    yellow:  '#f3f99d'
+    blue:    '#57c7ff'
+    magenta: '#ff6ac1'
+    cyan:    '#9aedfe'
+    white:   '#f1f1f0'
+#+end_src
+* Bash
+#+begin_src shell :tangle .bashrc
+  #
+  # ~/.bashrc
+  #
+
+  # If not running interactively, don't do anything
+  [[ $- != *i* ]] && return
+
+  alias ls='ls --color=auto'
+  PS1='[\u@\h \W]\$ '
+  alias config='/usr/bin/git --git-dir=/home/ibrahim/.cfg/ --work-tree=/home/ibrahim'
+#+end_src
+* Gtk
+#+begin_src conf :tangle .config/gtk-3.0/settings.ini
+[Settings]
+gtk-key-theme-name = Emacs
+#+end_src
+* Starship
+#+begin_src conf :tangle .config/starship.toml
+[character]
+success_symbol = "[λ](bold green) "
+error_symbol = "[λ](bold red) "
+#+end_src
+* Tmux
+#+begin_src conf :tangle .tmux.conf.local
+# : << EOF
+# https://github.com/gpakosz/.tmux
+# (‑●‑●)> dual licensed under the WTFPL v2 license and the MIT license,
+#         without any warranty.
+#         Copyright 2012— Gregory Pakosz (@gpakosz).
+
+
+# -- navigation ----------------------------------------------------------------
+
+# if you're running tmux within iTerm2
+#   - and tmux is 1.9 or 1.9a
+#   - and iTerm2 is configured to let option key act as +Esc
+#   - and iTerm2 is configured to send [1;9A -> [1;9D for option + arrow keys
+# then uncomment the following line to make Meta + arrow keys mapping work
+#set -ga terminal-overrides "*:kUP3=\e[1;9A,*:kDN3=\e[1;9B,*:kRIT3=\e[1;9C,*:kLFT3=\e[1;9D"
+
+
+# -- windows & pane creation ---------------------------------------------------
+
+# new window retains current path, possible values are:
+#   - true
+#   - false (default)
+tmux_conf_new_window_retain_current_path=false
+
+# new pane retains current path, possible values are:
+#   - true (default)
+#   - false
+tmux_conf_new_pane_retain_current_path=true
+
+# new pane tries to reconnect ssh sessions (experimental), possible values are:
+#   - true
+#   - false (default)
+tmux_conf_new_pane_reconnect_ssh=false
+
+# prompt for session name when creating a new session, possible values are:
+#   - true
+#   - false (default)
+tmux_conf_new_session_prompt=false
+
+
+# -- display -------------------------------------------------------------------
+
+# RGB 24-bit colour support (tmux >= 2.2), possible values are:
+#  - true
+#  - false (default)
+tmux_conf_24b_colour=false
+
+# default theme
+tmux_conf_theme_colour_1="#080808"    # dark gray
+tmux_conf_theme_colour_2="#303030"    # gray
+tmux_conf_theme_colour_3="#8a8a8a"    # light gray
+tmux_conf_theme_colour_4="#20b2aa"    # light blue - asdf
+tmux_conf_theme_colour_5="#ffff00"    # yellow
+tmux_conf_theme_colour_6="#080808"    # dark gray
+tmux_conf_theme_colour_7="#e4e4e4"    # white
+tmux_conf_theme_colour_8="#080808"    # dark gray
+tmux_conf_theme_colour_9="#008080"    # yellow - mid green
+tmux_conf_theme_colour_10="#065535"   # pink - dark green
+tmux_conf_theme_colour_11="#5fff00"   # green
+tmux_conf_theme_colour_12="#8a8a8a"   # light gray
+tmux_conf_theme_colour_13="#e4e4e4"   # white
+tmux_conf_theme_colour_14="#080808"   # dark gray
+tmux_conf_theme_colour_15="#080808"   # dark gray
+tmux_conf_theme_colour_16="#065535"   # red
+tmux_conf_theme_colour_17="#e4e4e4"   # white
+
+# default theme (ansi)
+#tmux_conf_theme_colour_1="colour0"
+#tmux_conf_theme_colour_2="colour8"
+#tmux_conf_theme_colour_3="colour8"
+#tmux_conf_theme_colour_4="colour14"
+#tmux_conf_theme_colour_5="colour11"
+#tmux_conf_theme_colour_6="colour0"
+#tmux_conf_theme_colour_7="colour15"
+#tmux_conf_theme_colour_8="colour0"
+#tmux_conf_theme_colour_9="colour11"
+#tmux_conf_theme_colour_10="colour13"
+#tmux_conf_theme_colour_11="colour10"
+#tmux_conf_theme_colour_12="colour8"
+#tmux_conf_theme_colour_13="colour15"
+#tmux_conf_theme_colour_14="colour0"
+#tmux_conf_theme_colour_15="colour0"
+#tmux_conf_theme_colour_16="colour1"
+#tmux_conf_theme_colour_17="colour15"
+
+# window style
+tmux_conf_theme_window_fg="default"
+tmux_conf_theme_window_bg="default"
+
+# highlight focused pane (tmux >= 2.1), possible values are:
+#   - true
+#   - false (default)
+tmux_conf_theme_highlight_focused_pane=false
+
+# focused pane colours:
+tmux_conf_theme_focused_pane_bg="$tmux_conf_theme_colour_2"
+
+# pane border style, possible values are:
+#   - thin (default)
+#   - fat
+tmux_conf_theme_pane_border_style=thin
+
+# pane borders colours:
+tmux_conf_theme_pane_border="$tmux_conf_theme_colour_2"
+tmux_conf_theme_pane_active_border="$tmux_conf_theme_colour_4"
+
+# pane indicator colours (when you hit <prefix> + q)
+tmux_conf_theme_pane_indicator="$tmux_conf_theme_colour_4"
+tmux_conf_theme_pane_active_indicator="$tmux_conf_theme_colour_4"
+
+# status line style
+tmux_conf_theme_message_fg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_message_bg="$tmux_conf_theme_colour_5"
+tmux_conf_theme_message_attr="bold"
+
+# status line command style (<prefix> : Escape)
+tmux_conf_theme_message_command_fg="$tmux_conf_theme_colour_5"
+tmux_conf_theme_message_command_bg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_message_command_attr="bold"
+
+# window modes style
+tmux_conf_theme_mode_fg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_mode_bg="$tmux_conf_theme_colour_5"
+tmux_conf_theme_mode_attr="bold"
+
+# status line style
+tmux_conf_theme_status_fg="$tmux_conf_theme_colour_3"
+tmux_conf_theme_status_bg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_status_attr="none"
+
+# terminal title
+#   - built-in variables are:
+#     - #{circled_window_index}
+#     - #{circled_session_name}
+#     - #{hostname}
+#     - #{hostname_ssh}
+#     - #{hostname_full}
+#     - #{hostname_full_ssh}
+#     - #{username}
+#     - #{username_ssh}
+tmux_conf_theme_terminal_title="#h ❐ #S ● #I #W"
+
+# window status style
+#   - built-in variables are:
+#     - #{circled_window_index}
+#     - #{circled_session_name}
+#     - #{hostname}
+#     - #{hostname_ssh}
+#     - #{hostname_full}
+#     - #{hostname_full_ssh}
+#     - #{username}
+#     - #{username_ssh}
+tmux_conf_theme_window_status_fg="$tmux_conf_theme_colour_3"
+tmux_conf_theme_window_status_bg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_window_status_attr="none"
+tmux_conf_theme_window_status_format="#I #W"
+#tmux_conf_theme_window_status_format="#{circled_window_index} #W"
+#tmux_conf_theme_window_status_format="#I #W#{?window_bell_flag,🔔,}#{?window_zoomed_flag,🔍,}"
+
+# window current status style
+#   - built-in variables are:
+#     - #{circled_window_index}
+#     - #{circled_session_name}
+#     - #{hostname}
+#     - #{hostname_ssh}
+#     - #{hostname_full}
+#     - #{hostname_full_ssh}
+#     - #{username}
+#     - #{username_ssh}
+tmux_conf_theme_window_status_current_fg="$tmux_conf_theme_colour_1"
+tmux_conf_theme_window_status_current_bg="$tmux_conf_theme_colour_4"
+tmux_conf_theme_window_status_current_attr="bold"
+tmux_conf_theme_window_status_current_format="#I #W"
+#tmux_conf_theme_window_status_current_format="#{circled_window_index} #W"
+#tmux_conf_theme_window_status_current_format="#I #W#{?window_zoomed_flag,🔍,}"
+
+# window activity status style
+tmux_conf_theme_window_status_activity_fg="default"
+tmux_conf_theme_window_status_activity_bg="default"
+tmux_conf_theme_window_status_activity_attr="underscore"
+
+# window bell status style
+tmux_conf_theme_window_status_bell_fg="$tmux_conf_theme_colour_5"
+tmux_conf_theme_window_status_bell_bg="default"
+tmux_conf_theme_window_status_bell_attr="blink,bold"
+
+# window last status style
+tmux_conf_theme_window_status_last_fg="$tmux_conf_theme_colour_4"
+tmux_conf_theme_window_status_last_bg="$tmux_conf_theme_colour_2"
+tmux_conf_theme_window_status_last_attr="none"
+
+# status left/right sections separators
+tmux_conf_theme_left_separator_main=""
+tmux_conf_theme_left_separator_sub="|"
+tmux_conf_theme_right_separator_main=""
+tmux_conf_theme_right_separator_sub="|"
+#tmux_conf_theme_left_separator_main='\uE0B0'  # /!\ you don't need to install Powerline
+#tmux_conf_theme_left_separator_sub='\uE0B1'   #   you only need fonts patched with
+#tmux_conf_theme_right_separator_main='\uE0B2' #   Powerline symbols or the standalone
+#tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see README.md
+
+# status left/right content:
+#   - separate main sections with "|"
+#   - separate subsections with ","
+#   - built-in variables are:
+#     - #{battery_bar}
+#     - #{battery_hbar}
+#     - #{battery_percentage}
+#     - #{battery_status}
+#     - #{battery_vbar}
+#     - #{circled_session_name}
+#     - #{hostname_ssh}
+#     - #{hostname}
+#     - #{hostname_full}
+#     - #{hostname_full_ssh}
+#     - #{loadavg}
+#     - #{mouse}
+#     - #{pairing}
+#     - #{prefix}
+#     - #{root}
+#     - #{synchronized}
+#     - #{uptime_y}
+#     - #{uptime_d} (modulo 365 when #{uptime_y} is used)
+#     - #{uptime_h}
+#     - #{uptime_m}
+#     - #{uptime_s}
+#     - #{username}
+#     - #{username_ssh}
+tmux_conf_theme_status_left=" ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} "
+tmux_conf_theme_status_right=" #{prefix}#{mouse}#{pairing}#{synchronized}#{?battery_status,#{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} "
+
+# status left style
+tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6,$tmux_conf_theme_colour_7,$tmux_conf_theme_colour_8"
+tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_9,$tmux_conf_theme_colour_10,$tmux_conf_theme_colour_11"
+tmux_conf_theme_status_left_attr="bold,none,none"
+
+# status right style
+tmux_conf_theme_status_right_fg="$tmux_conf_theme_colour_12,$tmux_conf_theme_colour_13,$tmux_conf_theme_colour_14"
+tmux_conf_theme_status_right_bg="$tmux_conf_theme_colour_15,$tmux_conf_theme_colour_16,$tmux_conf_theme_colour_17"
+tmux_conf_theme_status_right_attr="none,none,bold"
+
+# pairing indicator
+tmux_conf_theme_pairing="⚇"                 # U+2687
+tmux_conf_theme_pairing_fg="none"
+tmux_conf_theme_pairing_bg="none"
+tmux_conf_theme_pairing_attr="none"
+
+# prefix indicator
+tmux_conf_theme_prefix="⌨"                  # U+2328
+tmux_conf_theme_prefix_fg="none"
+tmux_conf_theme_prefix_bg="none"
+tmux_conf_theme_prefix_attr="none"
+
+# mouse indicator
+tmux_conf_theme_mouse="↗"                   # U+2197
+tmux_conf_theme_mouse_fg="none"
+tmux_conf_theme_mouse_bg="none"
+tmux_conf_theme_mouse_attr="none"
+
+# root indicator
+tmux_conf_theme_root="!"
+tmux_conf_theme_root_fg="none"
+tmux_conf_theme_root_bg="none"
+tmux_conf_theme_root_attr="bold,blink"
+
+# synchronized indicator
+tmux_conf_theme_synchronized="⚏"            # U+268F
+tmux_conf_theme_synchronized_fg="none"
+tmux_conf_theme_synchronized_bg="none"
+tmux_conf_theme_synchronized_attr="none"
+
+# battery bar symbols
+tmux_conf_battery_bar_symbol_full="◼"
+tmux_conf_battery_bar_symbol_empty="◻"
+#tmux_conf_battery_bar_symbol_full="♥"
+#tmux_conf_battery_bar_symbol_empty="·"
+
+# battery bar length (in number of symbols), possible values are:
+#   - auto
+#   - a number, e.g. 5
+tmux_conf_battery_bar_length="auto"
+
+# battery bar palette, possible values are:
+#   - gradient (default)
+#   - heat
+#   - "colour_full_fg,colour_empty_fg,colour_bg"
+tmux_conf_battery_bar_palette="heat"
+#tmux_conf_battery_bar_palette="#d70000,#e4e4e4,#000000"   # red, white, black
+
+# battery hbar palette, possible values are:
+#   - gradient (default)
+#   - heat
+#   - "colour_low,colour_half,colour_full"
+tmux_conf_battery_hbar_palette="heat"
+#tmux_conf_battery_hbar_palette="#d70000,#ff5f00,#5fff00"  # red, orange, green
+
+# battery vbar palette, possible values are:
+#   - gradient (default)
+#   - heat
+#   - "colour_low,colour_half,colour_full"
+tmux_conf_battery_vbar_palette="heat"
+#tmux_conf_battery_vbar_palette="#d70000,#ff5f00,#5fff00"  # red, orange, green
+
+# symbols used to indicate whether battery is charging or discharging
+tmux_conf_battery_status_charging="↑"       # U+2191
+tmux_conf_battery_status_discharging="↓"    # U+2193
+#tmux_conf_battery_status_charging="🔌"     # U+1F50C
+#tmux_conf_battery_status_discharging="🔋"  # U+1F50B
+
+# clock style (when you hit <prefix> + t)
+# you may want to use %I:%M %p in place of %R in tmux_conf_theme_status_right
+tmux_conf_theme_clock_colour="$tmux_conf_theme_colour_4"
+tmux_conf_theme_clock_style="24"
+
+
+# -- clipboard -----------------------------------------------------------------
+
+# in copy mode, copying selection also copies to the OS clipboard
+#   - true
+#   - false (default)
+# on macOS, this requires installing reattach-to-user-namespace, see README.md
+# on Linux, this requires xsel or xclip
+tmux_conf_copy_to_os_clipboard=false
+
+
+# -- user customizations -------------------------------------------------------
+# this is the place to override or undo settings
+
+# increase history size
+#set -g history-limit 10000
+
+# start with mouse mode enabled
+set -g mouse on
+
+# force Vi mode
+#   really you should export VISUAL or EDITOR environment variable, see manual
+#set -g status-keys vi
+#set -g mode-keys vi
+
+# replace C-b by C-a instead of using both prefixes
+# set -gu prefix2
+# unbind C-a
+# unbind C-b
+# set -g prefix C-a
+# bind C-a send-prefix
+
+# move status line to top
+#set -g status-position top
+
+
+# -- tpm -----------------------------------------------------------------------
+
+# while I don't use tpm myself, many people requested official support so here
+# is a seamless integration that automatically installs plugins in parallel
+
+# whenever a plugin introduces a variable to be used in 'status-left' or
+# 'status-right', you can use it in 'tmux_conf_theme_status_left' and
+# 'tmux_conf_theme_status_right' variables.
+
+# by default, launching tmux will update tpm and all plugins
+#   - true (default)
+#   - false
+tmux_conf_update_plugins_on_launch=true
+
+# by default, reloading the configuration will update tpm and all plugins
+#   - true (default)
+#   - false
+tmux_conf_update_plugins_on_reload=true
+
+# by default, reloading the configuration will uninstall tpm and plugins when no
+# plugins are enabled
+#   - true (default)
+#   - false
+tmux_conf_uninstall_plugins_on_reload=true
+
+# /!\ the tpm bindings differ slightly from upstream:
+#   - installing plugins: <prefix> + I
+#   - uninstalling plugins: <prefix> + Alt + u
+#   - updating plugins: <prefix> + u
+
+# /!\ do not add set -g @plugin 'tmux-plugins/tpm'
+# /!\ do not add run '~/.tmux/plugins/tpm/tpm'
+
+# to enable a plugin, use the 'set -g @plugin' syntax:
+# visit https://github.com/tmux-plugins for available plugins
+#set -g @plugin 'tmux-plugins/tmux-copycat'
+#set -g @plugin 'tmux-plugins/tmux-cpu'
+#set -g @plugin 'tmux-plugins/tmux-resurrect'
+#set -g @plugin 'tmux-plugins/tmux-continuum'
+#set -g @continuum-restore 'on'
+
+
+# -- custom variables ----------------------------------------------------------
+
+# to define a custom #{foo} variable, define a POSIX shell function between the
+# '# EOF' and the '# "$@"' lines. Please note that the opening brace { character
+# must be on the same line as the function name otherwise the parse won't detect
+# it.
+#
+# then, use #{foo} in e.g. the 'tmux_conf_theme_status_left' or the
+# 'tmux_conf_theme_status_right' variables.
+
+# # /!\ do not remove the following line
+# EOF
+#
+# # /!\ do not "uncomment" the functions: the leading "# " characters are needed
+#
+# weather() {
+#   curl -m 1 wttr.in?format=3 2>/dev/null
+#   sleep 900 # sleep for 15 minutes, throttle network requests whatever the value of status-interval
+# }
+#
+# online() {
+#   ping -c 1 1.1.1.1 >/dev/null 2>&1 && printf '✔' || printf '✘'
+# }
+#
+# "$@"
+# # /!\ do not remove the previous line
+
+# Change prefix to C-t unbind C-b
+set -g prefix C-t
+#+end_src
+* Xmobar
+#+begin_src haskell :tangle .config/xmobar/xmobarrc
+  Config { font = "xft:Roboto Mono:pixelsize=18:antialias=true:hinting=true"
+         , additionalFonts = [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
+                             , "xft:Font Awesome 6 Free Solid:pixelsize=16"
+                             , "xft:Font Awesome 6 Brands:pixelsize=18"
+                             ]
+         , borderColor = "black"
+         , border = TopB
+         , bgColor = "#282a36"
+         , fgColor = "#eff0eb"
+         , alpha = 255
+         , position = TopSize L 100 24
+         , textOffset = -1
+         , iconOffset = -1
+         , lowerOnStart = True
+         , pickBroadest = False
+         , persistent = False
+         , hideOnStart = False
+         , iconRoot     = "/home/ibrahim/.xmonad/xpm/"  -- default: "."
+         , allDesktops = True
+         , overrideRedirect = True
+         , commands = [ Run Cpu ["-t", "<fn=2>\xf108</fn> CPU:(<total>%)","-H","50","--high","red"] 20
+                      , Run Memory ["-t", "<fn=2>\xf7c2</fn> <used>M(<usedratio>%)"] 20
+                      , Run Wireless "wlp2s0" [ "-t", "<fn=2>\xf1eb</fn> <essid>" ] 10
+                      , Run Date "<fn=2>\xf073</fn> %d %B %Y" "date" 3600
+                      , Run Date "<fn=2>\xf017</fn> %H:%M" "time" 50
+                      , Run Volume "default" "Master" ["-t", "<fn=2>\xf028</fn> <volume>% <status>"] 10
+                      , Run Com "echo" ["<fn=3>\xf17c</fn>"] "penguin" 3600
+                      , Run Com "uname" ["-r"] "kernel" 36000
+                      , Run Com "echo" ["<fn=2>\xf242</fn>"] "baticon" 3600
+                      , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
+                      , Run UnsafeStdinReader
+                      ]
+
+         , sepChar = "%"
+         , alignSep = "}{"
+         , template = " <icon=haskell_30.xpm/> %UnsafeStdinReader% }\
+                      \{ <fc=#ee9a00>%time%</fc> | <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> | <fc=#ee9a00>%date%</fc> | <fc=#a3c562>%baticon% %battery%</fc> | <fc=#da70d6>%default:Master%</fc> | <fc=#51afef>%wlp2s0wi%</fc> "
+         }
+#+end_src
+* Xmodmap
+#+begin_src conf :tangle .Xmodmap
+clear lock
+clear control
+keycode 66 = Control_L
+add control = Control_L
+add Lock = Control_R
+#+end_src
+
+* Xmonad
+** Imports
+#+begin_src haskell :tangle .xmonad/xmonad.hs
+  import XMonad
+  import Data.Maybe (isJust)
+  import Data.Monoid
+  import System.Exit
+  import XMonad.Actions.CycleWS (Direction1D(..), moveTo, shiftTo, WSType(..), nextScreen, prevScreen)
+  import XMonad.Actions.WithAll (sinkAll, killAll)
+  import XMonad.Hooks.ManageDocks
+  import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
+  import XMonad.Layout.Spacing
+  import XMonad.Layout.Accordion
+  import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
+  import XMonad.Util.SpawnOnce
+  import XMonad.Util.Run
+  import XMonad.Util.EZConfig (additionalKeysP)
+  import Graphics.X11.ExtraTypes.XF86
+
+  import qualified XMonad.StackSet as W
+  import qualified Data.Map        as M
+  import qualified XMonad.Layout.MultiToggle as MT (Toggle(..))
+#+end_src
+** Variables
+#+begin_src haskell :tangle .xmonad/xmonad.hs
+  myTerminal      = "alacritty"
+
+  myEmacs :: String
+  myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
+
+  myBrowser :: String
+  myBrowser = "brave"
+
+  -- Whether focus follows the mouse pointer.
+  myFocusFollowsMouse :: Bool
+  myFocusFollowsMouse = True
+
+  -- Whether clicking on a window to focus also passes the click to the window
+  myClickJustFocuses :: Bool
+  myClickJustFocuses = False
+
+  color01 = "#ff6c6b"
+  color02 = "#51afef"
+  color03 = "#ecbe7b"
+
+  windowCount :: X (Maybe String)
+  windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
+
+  myBorderWidth   = 4
+
+  myModMask       = mod4Mask
+
+  myWorkspaces    = ["1:chat","2:emacs","3:term","4:web","5:video","6:other","7","8","9"]
+
+  myNormalBorderColor  = "#dddddd"
+  myFocusedBorderColor = "#00ab84"
+
+  menuBackgroundColor = "#282a36"
+  menuForegroundColor = "#eff0eb"
+  menuFontFamily = "Iosevka Aile"
+  menuArguments = " -i -l 5 -fn '" ++ menuFontFamily ++ "' -nb '" ++ menuBackgroundColor ++ "' -nf '" ++ menuForegroundColor ++ "' -bw 4"
+#+end_src
+** Key Bindings
+#+begin_src haskell :tangle .xmonad/xmonad.hs
+  myKeys :: [(String, X ())]
+  myKeys =
+    -- launch a terminal
+      [ ("M-<Return>", spawn (myTerminal))
+
+      -- launch dmenu
+      , ("M-p", spawn ("dmenu_run" ++ menuArguments))
+
+      -- launch clipmenu
+      , ("M-u", spawn ("clipmenu" ++ menuArguments))
+
+        -- launch passmenu
+      , ("M-i", spawn ("passmenu" ++ menuArguments))
+
+        -- close focused window
+      , ("M-c", kill)
+      , ("M-S-c", killAll)
+
+      , ("M-S-q", io (exitWith ExitSuccess))
+      , ("M-q", spawn "xmonad --recompile; xmonad --restart")
+
+        -- Emacs keybindings
+      , ("M-e", spawn (myEmacs))
+      , ("M-S-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))
+      , ("M-S-e d", spawn (myEmacs ++ ("--eval '(dired nil)'")))
+
+        -- launch browser
+      , ("M-b", spawn (myBrowser))
+
+        -- Rotate through the available layout algorithms
+      , ("M-<Space>", sendMessage NextLayout)
+      , ("M-<Tab>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
+
+        -- Window navigation
+      , ("M-m", windows W.focusMaster)
+      , ("M-j", windows W.focusDown)
+      , ("M-k", windows W.focusUp)
+      , ("M-S-m", windows W.swapMaster)
+      , ("M-S-j", windows W.swapDown)
+      , ("M-S-k", windows W.swapUp)
+
+        -- Floating windows
+      , ("M-t", withFocused $ windows . W.sink)
+      , ("M-S-t", sinkAll)
+
+        -- Window resizing
+      , ("M-h", sendMessage Shrink)
+      , ("M-l", sendMessage Expand)
+
+      -- KB_GROUP Workspaces
+      , ("M-.", nextScreen)
+      , ("M-,", prevScreen)
+      , ("M-S-.", shiftTo Next nonNSP >> moveTo Next nonNSP)
+      , ("M-S-,", shiftTo Prev nonNSP >> moveTo Prev nonNSP)
+
+        -- control audio
+      , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume 0 -1.5%")
+      , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume 0 +1.5%")
+      , ("<XF86AudioMute>", spawn "pactl set-sink-mute 0 toggle")
+
+        -- control brightness
+      , ("<XF86MonBrightnessUp>", spawn "sudo xbacklight -inc 10")
+      , ("<XF86MonBrightnessDown>", spawn "sudo xbacklight -dec 10")
+      ]
+
+      -- The following lines are needed for named scratchpads.
+    where nonNSP          = WSIs (return (\ws -> W.tag ws /= "NSP"))
+          nonEmptyNonNSP  = WSIs (return (\ws -> isJust (W.stack ws) && W.tag ws /= "NSP"))
+#+end_src
+** Mouse Bindings
+#+begin_src haskell :tangle .xmonad/xmonad.hs
+  -- Mouse bindings
+  myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
+
+      -- mod-button1, Set the window to floating mode and move by dragging
+      [ ((modm, button1), (\w -> focus w >> mouseMoveWindow w
+                                         >> windows W.shiftMaster))
+
+      -- mod-button2, Raise the window to the top of the stack
+      , ((modm, button2), (\w -> focus w >> windows W.shiftMaster))
+
+      -- mod-button3, Set the window to floating mode and resize by dragging
+      , ((modm, button3), (\w -> focus w >> mouseResizeWindow w
+                                         >> windows W.shiftMaster))
+
+      -- you may also bind events to the mouse scroll wheel (button4 and button5)
+      ]
+#+end_src
+** Layout
+#+begin_src haskell :tangle .xmonad/xmonad.hs
+  myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| Accordion ||| Mirror Accordion)
+    where
+         -- default tiling algorithm partitions the screen into two panes
+         tiled   = Tall nmaster delta ratio
+
+         -- The default number of windows in the master pane
+         nmaster = 1
+
+         -- Default proportion of screen occupied by master pane
+         ratio   = 1/2
+
+         -- Percent of screen to increment by when resizing panes
+         delta   = 3/100
+#+end_src
+** Hooks
+#+begin_src haskell :tangle .xmonad/xmonad.hs
+  ------------------------------------------------------------------------
+  -- Window rules:
+  myManageHook = composeAll
+      [ className =? "MPlayer"        --> doFloat
+      , className =? "Gimp"           --> doFloat
+      , className =? "Emacs"          --> doShift "2:emacs"
+      , className =? "Alacritty"      --> doShift "3:term"
+      , className =? "Brave-browser"  --> doShift "4:web"
+      , resource  =? "desktop_window" --> doIgnore
+      , resource  =? "kdesktop"       --> doIgnore ]
+
+  ------------------------------------------------------------------------
+  -- Event handling
+
+  -- * EwmhDesktops users should change this to ewmhDesktopsEventHook
+  --
+  -- Defines a custom handler function for X Events. The function should
+  -- return (All True) if the default handler is to be run afterwards. To
+  -- combine event hooks use mappend or mconcat from Data.Monoid.
+  --
+  myEventHook = mempty
+
+  ------------------------------------------------------------------------
+  -- Status bars and logging
+
+  -- Perform an arbitrary action on each internal state change or X event.
+  -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
+  --
+  color01 = "#ff6c6b"
+  color02 = "#51afef"
+  color03 = "#ecbe7b"
+
+  myLogHook proc = dynamicLogWithPP $ xmobarPP
+    {  ppOutput = hPutStrLn proc
+     , ppCurrent = xmobarColor color01 "" . wrap ("<fc=" ++ color01 ++ ">") "</fc>"
+     , ppVisible = xmobarColor color01 ""
+     , ppHidden = xmobarColor color02 "" . wrap ("<fc=" ++ color02 ++ ">") "</fc>"
+     , ppHiddenNoWindows = xmobarColor color02 ""
+     , ppTitle = xmobarColor color03 "" . shorten 35
+     , ppSep =  " | "
+     , ppExtras  = [windowCount]
+     , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+     }
+
+  ------------------------------------------------------------------------
+  -- Startup hook
+  myStartupHook = do
+    spawnOnce "nitrogen --restore &"
+    spawnOnce "compton &"
+    spawnOnce "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
+    spawnOnce "clipmenud"
+#+end_src
+** Main
+#+begin_src haskell :tangle .xmonad/xmonad.hs
+  -- Run xmonad with the settings you specify. No need to modify this.
+  --
+  main = do
+    xmproc <- spawnPipe "xmobar"
+    xmonad $docks $ defaults xmproc
+
+  -- A structure containing your configuration settings, overriding
+  -- fields in the default config. Any you don't override, will
+  -- use the defaults defined in xmonad/XMonad/Config.hs
+  --
+  -- No need to modify this.
+  --
+  defaults xmproc = def {
+        -- simple stuff
+          terminal           = myTerminal,
+          focusFollowsMouse  = myFocusFollowsMouse,
+          clickJustFocuses   = myClickJustFocuses,
+          borderWidth        = myBorderWidth,
+          modMask            = myModMask,
+          workspaces         = myWorkspaces,
+          normalBorderColor  = myNormalBorderColor,
+          focusedBorderColor = myFocusedBorderColor,
+
+        -- key bindings
+        --   keys               = myKeys,
+          mouseBindings      = myMouseBindings,
+
+        -- hooks, layouts
+          layoutHook         = spacingRaw False (Border 0 10 10 10) True (Border 10 10 10 10) True $ myLayout,
+          manageHook         = myManageHook,
+          handleEventHook    = myEventHook,
+          logHook            = myLogHook xmproc,
+          startupHook        = myStartupHook
+      } `additionalKeysP` myKeys
+#+end_src
+* Xprofile
+#+begin_src shell :tangle .xprofile
+xset r rate 400 50
+xmodmap ~/.Xmodmap
+setxkbmap -option altwin:swap_alt_win
+#+end_src
+* Xresources
+#+begin_src conf :tangle .Xresources
+Xft.dpi: 144
+
+! These might also be useful depending on your monitor and personal preference:
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+#+end_src
+* Zsh
+#+begin_src shell :tangle .zshrc
+
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
+# Path to your oh-my-zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
+
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time oh-my-zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="robbyrussell"
+
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
+
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
+
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+    git
+    zsh-syntax-highlighting
+    zsh-autosuggestions
+    colored-man-pages
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+export EDITOR='emacs'
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias config='/usr/bin/git --git-dir=/home/ibrahim/.cfg/ --work-tree=/home/ibrahim'
+
+eval "$(starship init zsh)"
+
+#+end_src
