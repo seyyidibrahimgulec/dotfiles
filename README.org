@@ -2,6 +2,7 @@
 * Table Of Contents :TOC:
 - [[#alacritty][Alacritty]]
 - [[#bash][Bash]]
+- [[#emacs][Emacs]]
 - [[#gtk][Gtk]]
 - [[#starship][Starship]]
 - [[#tmux][Tmux]]
@@ -123,6 +124,8 @@ colors:
   PS1='[\u@\h \W]\$ '
   alias config='/usr/bin/git --git-dir=/home/ibrahim/.cfg/ --work-tree=/home/ibrahim'
 #+end_src
+* Emacs
+- [[https://github.com/seyyidibrahimgulec/.emacs.d][My emacs configuration]]
 * Gtk
 #+begin_src conf :tangle .config/gtk-3.0/settings.ini
 [Settings]
