@@ -131,6 +131,8 @@ colors:
 #+begin_src conf :tangle .config/gtk-3.0/settings.ini
 [Settings]
 gtk-key-theme-name = Emacs
+gtk-theme-name = Arc
+gtk-icon-theme-name = Arc
 #+end_src
 * Starship
 #+begin_src conf :tangle .config/starship.toml
