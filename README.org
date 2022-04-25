@@ -614,12 +614,10 @@ mute=XF86AudioMute
          , overrideRedirect = True
          , commands = [ Run Cpu ["-t", "<fn=2>\xf108</fn> CPU:(<total>%)","-H","50","--high","red"] 20
                       , Run Memory ["-t", "<fn=2>\xf7c2</fn> <used>M(<usedratio>%)"] 20
-                      -- , Run Date "<fn=2>\xf073</fn> %d %B %Y" "date" 3600
-                      , Run Date "<fn=2>\xf017</fn> %H:%M" "time" 50
+                      , Run Date "<fn=2>\xf017</fn> %H:%M - %d %B %Y" "date" 50
                       , Run Com "echo" ["<fn=3>\xf17c</fn>"] "penguin" 3600
                       , Run Com "uname" ["-r"] "kernel" 36000
                       , Run Com "echo" ["<fn=2>\xf242</fn>"] "baticon" 3600
-                      , Run BatteryP ["BAT0"] ["-t", "<acstatus><watts> (<left>%)"] 360
                       , Run Com ".config/xmobar/trayer-padding-icon.sh" [] "trayerpad" 20
                       , Run UnsafeStdinReader
                       ]
@@ -627,7 +625,7 @@ mute=XF86AudioMute
          , sepChar = "%"
          , alignSep = "}{"
          , template = " <icon=haskell_30.xpm/> %UnsafeStdinReader% }\
-                      \{ <fc=#ee9a00>%time%</fc> | <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> | <fc=#a3c562>%baticon% %battery%</fc> %trayerpad%"
+                      \{ <fc=#ee9a00>%date%</fc> | <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> %trayerpad%"
          }
 #+end_src
 * Xmodmap
@@ -844,7 +842,7 @@ add Lock = Control_R
      , ppVisible = xmobarColor color01 ""
      , ppHidden = xmobarColor color02 "" . wrap ("<fc=" ++ color02 ++ ">") "</fc>"
      , ppHiddenNoWindows = xmobarColor color02 ""
-     , ppTitle = xmobarColor color03 "" . shorten 35
+     , ppTitle = xmobarColor color03 "" . shorten 50
      , ppSep =  " | "
      , ppExtras  = [windowCount]
      , ppOrder  = \(ws:l:t:ex) -> [ws,l]++ex++[t]
@@ -858,9 +856,10 @@ add Lock = Control_R
     spawnOnce "compton &"
     spawnOnce "/usr/bin/emacs --daemon" -- emacs daemon for the emacsclient
     spawnOnce "clipmenud"
+    spawnOnce "cbatticon &"
     spawnOnce "nm-applet &"
     spawnOnce "volumeicon &"
-    spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 5 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --iconspacing 5 --transparent true --alpha 0 --tint 0x282a36 --height 28")
+    spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 5 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --iconspacing 8 --transparent true --alpha 0 --tint 0x282a36 --height 28")
 #+end_src
 ** Main
 #+begin_src haskell :tangle .xmonad/xmonad.hs
