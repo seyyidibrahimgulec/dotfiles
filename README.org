@@ -20,6 +20,7 @@
 - [[#xprofile][Xprofile]]
 - [[#xresources][Xresources]]
 - [[#zsh][Zsh]]
+- [[#references][References]]
 
 * Alacritty
 #+begin_src yaml :tangle .alacritty.yml
@@ -1031,3 +1032,6 @@ alias config='/usr/bin/git --git-dir=/home/ibrahim/.cfg/ --work-tree=/home/ibrah
 eval "$(starship init zsh)"
 
 #+end_src
+
+* References
+- [[https://gitlab.com/dwt1/dotfiles/][https://gitlab.com/dwt1/dotfiles/]]
