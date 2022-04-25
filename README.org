@@ -6,6 +6,7 @@
 - [[#gtk][Gtk]]
 - [[#starship][Starship]]
 - [[#tmux][Tmux]]
+- [[#volumeicon][Volumeicon]]
 - [[#xmobar][Xmobar]]
 - [[#xmodmap][Xmodmap]]
 - [[#xmonad][Xmonad]]
@@ -560,6 +561,34 @@ tmux_conf_uninstall_plugins_on_reload=true
 
 # Change prefix to C-t unbind C-b
 set -g prefix C-t
+#+end_src
+* Volumeicon
+#+begin_src conf :tangle .config/volumeicon/volumeicon
+[Alsa]
+card=default
+
+[Notification]
+show_notification=true
+notification_type=0
+
+[StatusIcon]
+stepsize=5
+onclick=xterm -e 'alsamixer'
+theme=White Gnome
+use_panel_specific_icons=false
+lmb_slider=false
+mmb_mute=false
+use_horizontal_slider=false
+show_sound_level=false
+use_transparent_background=false
+
+[Hotkeys]
+up_enabled=false
+down_enabled=false
+mute_enabled=false
+up=XF86AudioRaiseVolume
+down=XF86AudioLowerVolume
+mute=XF86AudioMute
 #+end_src
 * Xmobar
 #+begin_src haskell :tangle .config/xmobar/xmobarrc
