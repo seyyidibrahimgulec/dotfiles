@@ -597,8 +597,6 @@ mute=XF86AudioMute
                              , "xft:Font Awesome 6 Free Solid:pixelsize=16"
                              , "xft:Font Awesome 6 Brands:pixelsize=18"
                              ]
-         , borderColor = "black"
-         , border = TopB
          , bgColor = "#282a36"
          , fgColor = "#eff0eb"
          , alpha = 255
@@ -838,9 +836,6 @@ add Lock = Control_R
   -- Perform an arbitrary action on each internal state change or X event.
   -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
   --
-  color01 = "#ff6c6b"
-  color02 = "#51afef"
-  color03 = "#ecbe7b"
 
   myLogHook proc = dynamicLogWithPP $ xmobarPP
     {  ppOutput = hPutStrLn proc
