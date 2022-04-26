@@ -595,14 +595,14 @@ mute=XF86AudioMute
 #+end_src
 * Xmobar
 #+begin_src haskell :tangle .config/xmobar/xmobarrc
-  Config { font = "xft:Roboto Mono:pixelsize=18:antialias=true:hinting=true"
-         , additionalFonts = [ "xft:Font Awesome 6 Free Solid:pixelsize=16"
+  Config { font = "xft:Roboto Mono:pixelsize=19:antialias=true:hinting=true"
+         , additionalFonts = [ "xft:Font Awesome 6 Free Solid:pixelsize=18"
                              , "xft:Font Awesome 6 Brands:pixelsize=18"
                              ]
          , bgColor = "#282a36"
          , fgColor = "#eff0eb"
          , alpha = 255
-         , position = TopSize L 100 24
+         , position = TopSize C 100 40
          , textOffset = -1
          , iconOffset = -1
          , lowerOnStart = True
@@ -861,7 +861,7 @@ add Lock = Control_R
     spawnOnce "cbatticon"
     spawnOnce "nm-applet"
     spawnOnce "volumeicon"
-    spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 5 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --iconspacing 8 --transparent true --alpha 0 --tint 0x282a36 --height 28")
+    spawn ("sleep 2 && trayer --edge top --align right --widthtype request --padding 5 --SetDockType true --SetPartialStrut true --expand true --monitor 1 --iconspacing 8 --transparent true --alpha 0 --tint 0x282a36 --height 40")
 #+end_src
 ** Main
 #+begin_src haskell :tangle .xmonad/xmonad.hs
@@ -893,7 +893,7 @@ add Lock = Control_R
           mouseBindings      = myMouseBindings,
 
         -- hooks, layouts
-          layoutHook         = spacingRaw False (Border 0 10 10 10) True (Border 10 10 10 10) True $ myLayout,
+          layoutHook         = spacingRaw False (Border 0 5 5 5) True (Border 5 5 5 5) True $ myLayout,
           manageHook         = myManageHook,
           handleEventHook    = myEventHook,
           logHook            = myLogHook xmproc,
