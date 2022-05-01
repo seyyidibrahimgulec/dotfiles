@@ -723,9 +723,9 @@ add Lock = Control_R
       , ("M-q", spawn "xmonad --recompile; xmonad --restart")
 
         -- Emacs keybindings
-      , ("M-e", spawn (myEmacs))
-      , ("M-S-e b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))
-      , ("M-S-e d", spawn (myEmacs ++ ("--eval '(dired nil)'")))
+      , ("M-y", spawn (myEmacs))
+      , ("M-S-y b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))
+      , ("M-S-y d", spawn (myEmacs ++ ("--eval '(dired nil)'")))
 
         -- launch browser
       , ("M-b", spawn (myBrowser))
@@ -838,8 +838,9 @@ add Lock = Control_R
   -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
   --
 
-  myLogHook proc = dynamicLogWithPP $ xmobarPP
-    {  ppOutput = hPutStrLn proc
+  myLogHook proc0 proc1 = dynamicLogWithPP $ xmobarPP
+    {  ppOutput = \x -> hPutStrLn proc0 x   -- xmobar on monitor 1
+                        >> hPutStrLn proc1 x   -- xmobar on monitor 2
      , ppCurrent = xmobarColor color01 "" . wrap ("<fc=" ++ color01 ++ ">") "</fc>"
      , ppVisible = xmobarColor color01 ""
      , ppHidden = xmobarColor color02 "" . wrap ("<fc=" ++ color02 ++ ">") "</fc>"
@@ -869,8 +870,9 @@ add Lock = Control_R
   -- Run xmonad with the settings you specify. No need to modify this.
   --
   main = do
-    xmproc <- spawnPipe "xmobar"
-    xmonad $docks $ defaults xmproc
+    xmproc0 <- spawnPipe "xmobar -x 0"
+    xmproc1 <- spawnPipe "xmobar -x 1"
+    xmonad $docks $ defaults xmproc0 xmproc1
 
   -- A structure containing your configuration settings, overriding
   -- fields in the default config. Any you don't override, will
@@ -878,7 +880,7 @@ add Lock = Control_R
   --
   -- No need to modify this.
   --
-  defaults xmproc = def {
+  defaults xmproc0 xmproc1 = def {
         -- simple stuff
           terminal           = myTerminal,
           focusFollowsMouse  = myFocusFollowsMouse,
@@ -897,7 +899,7 @@ add Lock = Control_R
           layoutHook         = spacingRaw False (Border 0 5 5 5) True (Border 5 5 5 5) True $ myLayout,
           manageHook         = myManageHook,
           handleEventHook    = myEventHook,
-          logHook            = myLogHook xmproc,
+          logHook            = myLogHook xmproc0 xmproc1,
           startupHook        = myStartupHook
       } `additionalKeysP` myKeys
 #+end_src
