@@ -723,9 +723,9 @@ add Lock = Control_R
       , ("M-q", spawn "xmonad --recompile; xmonad --restart")
 
         -- Emacs keybindings
-      , ("M-y", spawn (myEmacs))
-      , ("M-S-y b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))
-      , ("M-S-y d", spawn (myEmacs ++ ("--eval '(dired nil)'")))
+      , ("M-<Backspace>", spawn (myEmacs))
+      , ("M-S-<Backspace> b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))
+      , ("M-S-<Backspace> d", spawn (myEmacs ++ ("--eval '(dired nil)'")))
 
         -- launch browser
       , ("M-b", spawn (myBrowser))
