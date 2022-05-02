@@ -110,6 +110,9 @@ error_symbol = "[λ](bold red) "
   # Change prefix to C-t unbind C-b
   unbind C-b
   set -g prefix C-t
+
+  # powerline
+  source "/usr/lib/python3.10/site-packages/powerline/bindings/tmux/powerline.conf"
 #+end_src
 * Volumeicon
 #+begin_src conf :tangle .config/volumeicon/volumeicon
