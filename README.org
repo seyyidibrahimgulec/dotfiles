@@ -113,7 +113,7 @@ error_symbol = "[λ](bold red) "
 
   bind r source-file ~/.tmux.conf
   set -g @plugin 'wfxr/tmux-power'
-  set -g @tmux_power_theme 'snow'
+  set -g @tmux_power_theme 'moon'
 
   # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
   run '~/.tmux/plugins/tpm/tpm'
