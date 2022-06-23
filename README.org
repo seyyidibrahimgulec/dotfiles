@@ -203,6 +203,7 @@ add Lock = Control_R
   import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP(..))
   import XMonad.Layout.Spacing
   import XMonad.Layout.ThreeColumns
+  import XMonad.Layout.MultiToggle (mkToggle, single, EOT(EOT), (??))
   import XMonad.Layout.MultiToggle.Instances (StdTransformers(NBFULL, MIRROR, NOBORDERS))
   import XMonad.Util.SpawnOnce
   import XMonad.Util.Run
@@ -285,7 +286,7 @@ add Lock = Control_R
 
         -- Rotate through the available layout algorithms
       , ("M-<Space>", sendMessage NextLayout)
-      , ("M-<Tab>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts)
+      , ("M-<Tab>", sendMessage (MT.Toggle NBFULL) >> sendMessage ToggleStruts >> toggleSmartSpacing)
 
         -- Window navigation
       , ("M-m", windows W.focusMaster)
@@ -344,21 +345,24 @@ add Lock = Control_R
 #+end_src
 ** Layout
 #+begin_src haskell :tangle .xmonad/xmonad.hs
-  myLayout = avoidStruts (tiled ||| Mirror tiled ||| threeCol ||| Full)
+  myLayout = avoidStruts
+             $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) myDefaultLayout
     where
-         threeCol = ThreeColMid nmaster delta ratio
+      myDefaultLayout = (tiled ||| Mirror tiled ||| threeCol ||| Full)
+        where
+          threeCol = ThreeColMid nmaster delta ratio
 
-         -- default tiling algorithm partitions the screen into two panes
-         tiled   = Tall nmaster delta ratio
+          -- default tiling algorithm partitions the screen into two panes
+          tiled   = Tall nmaster delta ratio
 
-         -- The default number of windows in the master pane
-         nmaster = 1
+          -- The default number of windows in the master pane
+          nmaster = 1
 
-         -- Default proportion of screen occupied by master pane
-         ratio   = 1/2
+          -- Default proportion of screen occupied by master pane
+          ratio   = 1/2
 
-         -- Percent of screen to increment by when resizing panes
-         delta   = 3/100
+          -- Percent of screen to increment by when resizing panes
+          delta   = 3/100
 #+end_src
 ** Hooks
 #+begin_src haskell :tangle .xmonad/xmonad.hs
