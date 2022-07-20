@@ -283,7 +283,7 @@ add Lock = Control_R
   menuBackgroundColor = "#282a36"
   menuForegroundColor = "#eff0eb"
   menuFontFamily = "Iosevka Aile"
-  menuArguments = " -i -l 5 -fn '" ++ menuFontFamily ++ "' -nb '" ++ menuBackgroundColor ++ "' -nf '" ++ menuForegroundColor ++ "' -bw 4"
+  menuArguments = " -l 5 -fn '" ++ menuFontFamily ++ "' -nb '" ++ menuBackgroundColor ++ "' -nf '" ++ menuForegroundColor ++ "' -bw 4"
 #+end_src
 ** Key Bindings
 #+begin_src haskell :tangle .xmonad/xmonad.hs
@@ -510,6 +510,8 @@ Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
+
+dmenu.selbackground: #9567e0
 #+end_src
 * Zsh
 #+begin_src shell :tangle .zshrc
