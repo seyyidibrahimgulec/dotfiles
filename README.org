@@ -454,7 +454,7 @@ add Lock = Control_R
           mouseBindings      = myMouseBindings,
 
         -- hooks, layouts
-          layoutHook         = spacingRaw False (Border 0 5 5 5) True (Border 5 5 5 5) True $ myLayout,
+          layoutHook         = spacingRaw False (Border 10 10 10 10) True (Border 20 10 10 10) True $ myLayout,
           manageHook         = myManageHook,
           handleEventHook    = myEventHook,
           logHook            = myLogHook xmproc0 xmproc1,
