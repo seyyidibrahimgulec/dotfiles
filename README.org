@@ -243,7 +243,7 @@ add Lock = Control_R
 
   myModMask       = mod4Mask
 
-  myWorkspaces    = ["1:chat","2:emacs","3:term","4:web","5:video","6:other","7","8","9"]
+  myWorkspaces    = ["1:chat","2:emacs","3:term","4:web","5:other"]
 
   myNormalBorderColor  = "#dddddd"
   myFocusedBorderColor = "#00ab84"
