@@ -99,7 +99,7 @@ gtk-icon-theme-name = Arc
 * Starship
 #+begin_src conf :tangle .config/starship.toml
 [character]
-success_symbol = "[λ](bold green) "
+success_symbol = "[λ](bold #9567e0) "
 error_symbol = "[λ](bold red) "
 #+end_src
 * Tmux
@@ -113,7 +113,7 @@ error_symbol = "[λ](bold red) "
 
   bind r source-file ~/.tmux.conf
   set -g @plugin 'wfxr/tmux-power'
-  set -g @tmux_power_theme 'moon'
+  set -g @tmux_power_theme 'violet'
 
   # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
   run '~/.tmux/plugins/tpm/tpm'
@@ -178,7 +178,7 @@ mute=XF86AudioMute
          , sepChar = "%"
          , alignSep = "}{"
          , template = " <icon=haskell_30.xpm/> %UnsafeStdinReader% }\
-                      \{ <fc=#ee9a00>%date%</fc> | <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#ff6c6b><action=`alacritty -e htop`>%memory%</action></fc> %trayerpad%"
+                      \{ <fc=#ee9a00>%date%</fc> | <fc=#51afef>%penguin% <action=`alacritty -e htop`>%kernel%</action></fc> | <fc=#ecbe7b><action=`alacritty -e htop`>%cpu%</action></fc> | <fc=#9567e0><action=`alacritty -e htop`>%memory%</action></fc> %trayerpad%"
          }
 #+end_src
 * Xmodmap
@@ -232,7 +232,7 @@ add Lock = Control_R
   myClickJustFocuses :: Bool
   myClickJustFocuses = False
 
-  color01 = "#ff6c6b"
+  color01 = "#9567e0"
   color02 = "#51afef"
   color03 = "#ecbe7b"
 
@@ -246,7 +246,7 @@ add Lock = Control_R
   myWorkspaces    = ["1:chat","2:emacs","3:term","4:web","5:other"]
 
   myNormalBorderColor  = "#dddddd"
-  myFocusedBorderColor = "#00ab84"
+  myFocusedBorderColor = "#9567e0"
 
   menuBackgroundColor = "#282a36"
   menuForegroundColor = "#eff0eb"
