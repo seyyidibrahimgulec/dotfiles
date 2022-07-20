@@ -1,5 +1,8 @@
 #+title: My personal dotfiles
+* Screenshot
+[[./screenshot.png]]
 * Table Of Contents :TOC:
+- [[#screenshot][Screenshot]]
 - [[#alacritty][Alacritty]]
 - [[#bash][Bash]]
 - [[#emacs][Emacs]]
