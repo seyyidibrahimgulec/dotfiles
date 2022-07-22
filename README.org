@@ -316,6 +316,8 @@ add Lock = Control_R
       , ("M-<Backspace>", spawn (myEmacs))
       , ("M-S-<Backspace> b", spawn (myEmacs ++ ("--eval '(ibuffer)'")))
       , ("M-S-<Backspace> d", spawn (myEmacs ++ ("--eval '(dired nil)'")))
+      , ("M-S-<Backspace> e", spawn (myEmacs ++ ("--eval '(ig/open-emacs-configuration)'")))
+      , ("M-S-<Backspace> a", spawn (myEmacs ++ ("--eval '(ig/open-dotfiles-configuration)'")))
 
         -- launch browser
       , ("M-b", spawn (myBrowser))
