@@ -165,6 +165,8 @@ error_symbol = "[λ](bold red) "
   set newtab https://web.tabliss.io/
   set searchengine duckduckgo
 
+  unbind <F1>
+
   bind K tabprev
   bind J tabnext
 
