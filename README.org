@@ -162,6 +162,7 @@ error_symbol = "[λ](bold red) "
   set smoothscroll true
   set modeindicatorshowkeys true
   set tabopencontaineraware true
+  set allowautofocus false
   set newtab https://web.tabliss.io/
   set searchengine duckduckgo
 
