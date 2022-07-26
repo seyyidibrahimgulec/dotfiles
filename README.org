@@ -465,7 +465,7 @@ add Lock = Control_R
       , className =? "Gimp"           --> doFloat
       , className =? "Emacs"          --> doShift "2:emacs"
       , className =? "Alacritty"      --> doShift "3:term"
-      , className =? "Brave-browser"  --> doShift "4:web"
+      , className =? "firefox"  --> doShift "4:web"
       , resource  =? "desktop_window" --> doIgnore
       , resource  =? "kdesktop"       --> doIgnore ]
 
