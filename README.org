@@ -9,6 +9,7 @@
 - [[#gtk][Gtk]]
 - [[#starship][Starship]]
 - [[#tmux][Tmux]]
+- [[#tridactyl][Tridactyl]]
 - [[#volumeicon][Volumeicon]]
 - [[#xmobar][Xmobar]]
 - [[#xmodmap][Xmodmap]]
@@ -153,6 +154,57 @@ error_symbol = "[λ](bold red) "
   # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
   run '~/.tmux/plugins/tpm/tpm'
 #+end_src
+* Tridactyl
+#+begin_src vimrc :tangle .config/tridactyl/tridactylrc
+  sanitise tridactyllocal tridactylsync
+  colors midnight
+
+  set smoothscroll true
+  set modeindicatorshowkeys true
+  set tabopencontaineraware true
+  set newtab https://web.tabliss.io/
+  set searchengine duckduckgo
+
+  bind K tabprev
+  bind J tabnext
+
+  bind + zoom 0.1 true
+  bind - zoom -0.1 true
+
+  command ttcollapse js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'collapse-tree', tab: JS_ARGS[1]})€
+  command ttcollapse_recursively js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'collapse-tree', tab: JS_ARGS[1], recursively: true})€
+  command ttexpand js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'expand-tree', tab: JS_ARGS[1]})€
+  command ttexpand_recursively js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'expand-tree', tab: JS_ARGS[1], recursively: true})€
+  command ttcollapse_current_or_parent js browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'get-tree-structure', tab: 'current'}).then(struct => browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'collapse-tree', tab: struct[0].collapsed ? 'parent' : 'current'}))
+  command ttfocus js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'focus', tab: JS_ARGS[1]})€
+  command ttindent js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'indent', tab: JS_ARGS[1]})€
+  command ttindent_recursively js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'indent', tab: JS_ARGS[1], followChildren: true})€
+  command ttoutdent js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'outdent', tab: JS_ARGS[1]})€
+  command ttoutdent_recursively js -d€ browser.runtime.sendMessage("treestyletab@piro.sakura.ne.jp", {type: 'outdent', tab: JS_ARGS[1], followChildren: true})€
+
+  " Collapse/expand current tree
+  bind zc ttcollapse_current_or_parent
+  bind zC ttcollapse_recursively root
+  bind zo ttexpand current
+  bind zO ttexpand_recursively current
+
+  " Collapse/expand all
+  bind zm ttcollapse *
+  bind zr ttexpand *
+
+  " Focus parent/root of a tree
+  bind zp ttfocus parent
+  bind zP ttfocus root
+
+  " Focus next/previous, skipping over subtrees. May also try nextSiblingCyclic/prevSiblingCyclic:
+  bind zj ttfocus nextSibling
+  bind zk ttfocus prevSibling
+
+  " Indent/outindent current tab
+  bind << ttoutdent_recursively current
+  bind >> ttindent_recursively current
+
+#+end_src
 * Volumeicon
 #+begin_src conf :tangle .config/volumeicon/volumeicon
 [Alsa]
@@ -258,7 +310,7 @@ add Lock = Control_R
   myEmacs = "emacsclient -c -a 'emacs' "  -- Makes emacs keybindings easier to type
 
   myBrowser :: String
-  myBrowser = "brave"
+  myBrowser = "firefox"
 
   -- Whether focus follows the mouse pointer.
   myFocusFollowsMouse :: Bool
