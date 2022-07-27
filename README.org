@@ -573,6 +573,7 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 dmenu.selbackground: #9567e0
+Emacs.font: Roboto Mono-100
 #+end_src
 * Zsh
 #+begin_src shell :tangle .zshrc
